@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>종사자가 늘면 출하액도 늘까? | 갤러리아</title>
+<link rel="stylesheet" href="poster.css">
+<style>:root{--accent:#7fe3ff}</style>
+</head>
+<body>
+<a class="back" href="index.html">← 갤러리아로 돌아가기</a>
+<main class="poster">
+
+<header class="hero">
+<h1>종사자가 늘면<br>출하액도 늘까?</h1>
+<p class="sub">시도별 자동차 및 트레일러 제조업 종사자 수와 출하액의 관계를 Orange3 선형 회귀로 예측해 본 탐구</p>
+<div class="stat"><span class="num">R² 0.962</span><span class="cap">교차검증 점수. 1에 아주 가까워요</span></div>
+</header>
+<section class="sec">
+<h2>어떤 데이터를 썼나요?</h2>
+<ul class="facts">
+<li><b>x (독립변수)</b><span>종사자수(명)</span></li>
+<li><b>y (종속변수)</b><span>출하액(백만원)</span></li>
+<li><b>데이터 수</b><span>17개 시도</span></li>
+<li><b>출처</b><span>KOSIS</span></li>
+</ul>
+<p class="note" style="margin-top:12px">처음엔 산업단지 전체로 분석했더니 R²가 0.3 수준이었어요. 업종이 섞여 있었기 때문이라고 보고, 자동차 및 트레일러 제조업 하나로 범위를 좁혔어요.</p>
+</section>
+<section class="sec">
+<h2>산점도: 왼쪽 아래에서 오른쪽 위로</h2>
+<svg class="chart" viewBox="0 0 480 290" role="img" aria-label="종사자 수와 출하액의 산점도와 회귀선"><text x="58" y="254.0" font-size="11" text-anchor="end" fill="#4a5f82">0백만</text><line x1="64" x2="460" y1="250.0" y2="250.0" stroke="#cfe2ff"/><text x="58" y="160.4" font-size="11" text-anchor="end" fill="#4a5f82">100백만</text><line x1="64" x2="460" y1="156.4" y2="156.4" stroke="#cfe2ff"/><text x="58" y="66.8" font-size="11" text-anchor="end" fill="#4a5f82">200백만</text><line x1="64" x2="460" y1="62.8" y2="62.8" stroke="#cfe2ff"/><line x1="64.5" y1="250.0" x2="455.1" y2="15.3" stroke="#0b2a5b" stroke-width="2.5"/><circle cx="455.1" cy="17.4" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="64.5" cy="250.0" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="76.6" cy="243.1" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="82.0" cy="243.5" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="82.3" cy="239.7" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="84.2" cy="234.1" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="66.4" cy="249.3" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="126.8" cy="193.0" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="65.5" cy="249.4" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="149.4" cy="195.3" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="67.2" cy="248.6" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="82.2" cy="240.1" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="113.0" cy="222.9" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="84.3" cy="242.0" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="64.8" cy="249.8" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="99.6" cy="234.5" r="5" fill="#2f80ed" fill-opacity=".75"/><circle cx="106.2" cy="232.1" r="5" fill="#2f80ed" fill-opacity=".75"/><text x="64.0" y="268" font-size="11" text-anchor="middle" fill="#4a5f82">0</text><text x="180.5" y="268" font-size="11" text-anchor="middle" fill="#4a5f82">100,000</text><text x="296.9" y="268" font-size="11" text-anchor="middle" fill="#4a5f82">200,000</text><text x="413.4" y="268" font-size="11" text-anchor="middle" fill="#4a5f82">300,000</text><text x="262.0" y="284" font-size="12" text-anchor="middle" fill="#12233f">종사자수(명)</text></svg>
+<p class="note">종사자가 많은 지역일수록 출하액도 커지는 뚜렷한 양의 관계예요. 점 대부분은 왼쪽 아래에 모여 있어요.</p>
+</section>
+<section class="sec">
+<h2>내가 손으로 추정한 회귀식</h2>
+<blockquote>y = 750x − 300,000</blockquote>
+<p style="margin-top:10px">기울기는 종사자가 1명 늘 때 늘어나는 예상 출하액이에요. x가 0명일 때의 값(절편)은 현실에서 불가능한 값이에요.</p>
+</section>
+<section class="sec">
+<h2>내 계산 vs Orange3 예측 (출하액, 백만원)</h2>
+<table>
+<tr><th>종사자수</th><th>내 계산값</th><th>Orange3</th></tr>
+<tr><td>1,000명</td><td>450,000</td><td>444,619</td></tr><tr><td>10,000명</td><td>7,200,000</td><td>7,174,780</td></tr><tr><td>25,000명</td><td>18,450,000</td><td>18,391,714</td></tr><tr><td>45,000명</td><td>33,450,000</td><td>33,347,626</td></tr><tr><td>65,000명</td><td>48,450,000</td><td>48,303,538</td></tr>
+</table>
+<p class="note" style="margin-top:10px">두 값이 거의 같고, 예측 점들이 회귀선 근처에 놓였어요.</p>
+</section>
+<section class="sec">
+<h2>이 모델, 얼마나 믿을 수 있을까?</h2>
+<div class="cols">
+<ul class="facts"><li><b>R² (결정계수)</b><span>0.962</span></li><li><b>MAE (평균 오차)</b><span>11,222,237</span></li><li><b>RMSE</b><span>18,485,739</span></li></ul>
+<div>
+<p>RMSE가 MAE보다 큰 건 종사자 수에 비해 출하액이 유독 큰 지역(이상치)이 있기 때문이에요.</p>
+<p>교차검증 점수는 처음 보는 데이터로 평가해서, 훈련 점수보다 조금 낮게 나와요.</p>
+</div>
+</div>
+</section>
+<section class="sec">
+<h2>조심할 점: 범위 밖 예측</h2>
+<p>학습한 데이터 범위를 크게 벗어난 x값을 넣으면 현실적으로 말이 안 되는 값이 나와요. 이 모델은 평범한 기업 규모의 범위 안에서만 믿을 수 있어요.</p>
+</section>
+<footer class="foot">정보 교과 Orange3 선형회귀 탐구 · 데이터 출처: KOSIS 국가통계포털</footer>
+
+</main>
+</body>
+</html>
